@@ -34,37 +34,44 @@ StringSet& StringSet::operator= (const StringSet& arr)	//Overloaded assignment o
 	return *this;
 }
 
-void StringSet::printSet(StringSet* arr)
+void StringSet::printSet()
 {
-	// something
+	cout << "Array: " << endl;
+	for (int i = 0; i < setSize; i++)
+	{
+		cout << stringSetPtr[i] << endl;
+	}
 }
 
 bool StringSet::insert(string stringInsert) {
-	//if (testSet.find(stringInsert) == -1)	// if match found in the set // assume it works for now
-	//{
-	//	cout << "already in the set";
-	//	return false;
-	//}
-	if (setSize == maxArraySize)
+
+	if (find(stringInsert) != -1)	// if match found in the set // assume it works for now
 	{
-		maxArraySize = factor * maxArraySize;	// double max size
-		/*for (int i = 0; i < maxArraySize; i++) {
-			cout << stringSetPtr[i];
-		}*/
-		temp = stringSetPtr;	// assign stringSetPtr to temp
+		cout << "match not found" << endl;
 
-		//cout << *temp << endl;
-		stringSetPtr = new string[maxArraySize];	// assign new array of maxArraySize to stringSetPtr
-		//for (int i = 0; i < maxArraySize; i++) {	// copy contents of temp to new stringSetPtr
-		//	stringSetPtr[i] = temp[i];
-			//setSize++;	// increment setSize
-			// delete[] temp;
-		//}
-
+		if (setSize == maxArraySize)
+		{
+			temp = stringSetPtr;	// assign stringSetPtr to temp
+			stringSetPtr = new string[factor * maxArraySize];	// double max size & assign new array of maxArraySize to stringSetPtr
+			for (int i = 0; i < setSize; i++)
+			{
+				stringSetPtr[i] = temp[i];
+			}
+			//setSize++;
+			stringSetPtr[setSize++] = stringInsert;
+			maxArraySize = maxArraySize * factor;
+			delete[] temp;
+			return true;
+		}
+		else
+		{
+			stringSetPtr[setSize++] = stringInsert; //insert at next available spot and increment
+			return true;
+		}
 	}
 	else
-		stringSetPtr[setSize++] = stringInsert; //insert at next available spot and increment
-	return 0;
+		cout << "false" << endl;
+		return false;
 }
 
 bool StringSet::remove(string stringInsert) {
@@ -78,12 +85,16 @@ bool StringSet::remove(string stringInsert) {
 
 int StringSet::find(string stringInsert) const {
 
-	for (int i = 0; i < setSize; i++) {
+	for (int i = 0; i < setSize-1; i++) 
+	{
 		if (stringSetPtr[i] == stringInsert) {	// COMPARE index value to inserted string
-			cout << i; //TEST
-			return i;	// if found
+			cout << i << endl;
+			//cout << "hi" << endl;
+			return i;
 		}
+		//else continue;
 	}
+	//cout << "-1" << endl;
 	return -1;	// if not found
 }
 
