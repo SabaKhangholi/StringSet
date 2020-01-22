@@ -18,7 +18,7 @@ int main()
 	// END TEST
 
 	// TEST: Copy constructor
-	//testInsert.insert("hi");
+	//testInsert.insert("hi"); 
 	testInsert.insert("n");
 	testInsert.insert("n");
 	testInsert.insert("n");
