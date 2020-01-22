@@ -32,7 +32,7 @@ StringSet& StringSet::operator= (const StringSet& arr)	//Overloaded assignment o
 		copyArr(arr);	// FIX later
 	}
 	return *this;
-}
+} 
 
 void StringSet::printSet()
 {
