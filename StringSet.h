@@ -4,7 +4,7 @@
 #include<string>
 using std::string;
 class StringSet
-{
+{ 
 public:
 	// Constructor that creates an array of strings of size 2 in dynamic memory,
 	// sets maximum size to 2, and current size to 0
