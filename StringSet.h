@@ -4,7 +4,7 @@
 #include<string>
 using std::string;
 class StringSet
-{ 
+{
 public:
 	// Constructor that creates an array of strings of size 2 in dynamic memory,
 	// sets maximum size to 2, and current size to 0
@@ -42,7 +42,7 @@ public:
 	// PRE: 
 	// POST: 
 	// PARAM: 
-	int size(string) const;
+	int size() const;
 
 	// Returns union of the calling object and another string set
 	// PRE: 
@@ -62,17 +62,23 @@ public:
 	// PARAM: 
 	StringSet difference(const StringSet&) const;
 
-	int getMaxArraySize();	// delete later
+	int getMaxArraySize() const;	// delete later
 
-	int getSetSize();	// delete later
+	int getSetSize() const;	// delete later
 
-	void copyArr(const StringSet& arr);
+	string* getStringSetPtr();
 
-	void printSet(StringSet* arr);
+	void printSet(/*StringSet* arr*/);
 
 private:
 
 	string* stringSetPtr;
 	int setSize;
+	int unionSetSize;
 	int maxArraySize;
+	int factor = 2;	// used to double the array
+	string* temp; // temporary array
+	void copyArr(const StringSet& );
+	int findUnionCall(const StringSet&, const StringSet&) const;
+	int findUnionParam(const StringSet& unionSet, const StringSet& arr) const;
 };
